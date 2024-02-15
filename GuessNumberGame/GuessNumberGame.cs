@@ -9,7 +9,7 @@ namespace GuessNumberGame
     public enum GuessingPlayer
     {
         Human,
-        Machine
+        Machine 
     }
     public class GuessNumberGame
     {
