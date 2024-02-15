@@ -76,11 +76,11 @@ namespace GuessNumberGame
         {
             Console.WriteLine("Enter a number that`s to be guessed by a computer.");
 
-            int guessedNumber = 1;
+            int guessedNumber = -1;
             while (guessedNumber == -1)
             {
                 int parsedNumber = int.Parse(Console.ReadLine());
-                if (parsedNumber > 0 && parsedNumber <= this.max)
+                if (parsedNumber >= 0 && parsedNumber <= this.max)
                 {
                     guessedNumber = parsedNumber;
                 }
