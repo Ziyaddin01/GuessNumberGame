@@ -39,7 +39,37 @@ namespace GuessNumberGame
 
         private void HumanGuesses()
         {
-            throw new NotImplementedException();
+            Random rand = new Random();
+            int guessedNumber = rand.Next(0, max);
+
+            int lastGuess = -1;
+            int tries = 0;
+            while(lastGuess != guessedNumber && tries < maxTries)
+            {
+                Console.WriteLine("Guess the number!");
+                lastGuess = int.Parse(Console.ReadLine());
+
+                if(lastGuess == guessedNumber)
+                {
+                    Console.WriteLine("Congrats! You guessed the number!");
+                    break;
+                }
+                else if(lastGuess < guessedNumber)
+                {
+                    Console.WriteLine("My number is greater!");
+                }
+                else
+                {
+                    Console.WriteLine("My number is less!");
+                }
+                tries++;
+
+                if(tries == maxTries)
+                {
+                    Console.WriteLine("You lost!");
+                }
+            }
+
         }
 
         private void MachineGuesses()
