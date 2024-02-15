@@ -10,7 +10,7 @@ namespace GuessNumberGame
     public enum GuessingPlayer
     {
         Human,
-        Machine 
+        Machine
     }
     public class GuessNumberGame
     {
@@ -27,7 +27,7 @@ namespace GuessNumberGame
 
         public void Start()
         {
-            if(guessingPlayer == GuessingPlayer.Human)
+            if (guessingPlayer == GuessingPlayer.Human)
             {
                 HumanGuesses();
             }
@@ -44,17 +44,17 @@ namespace GuessNumberGame
 
             int lastGuess = -1;
             int tries = 0;
-            while(lastGuess != guessedNumber && tries < maxTries)
+            while (lastGuess != guessedNumber && tries < maxTries)
             {
                 Console.WriteLine("Guess the number!");
                 lastGuess = int.Parse(Console.ReadLine());
 
-                if(lastGuess == guessedNumber)
+                if (lastGuess == guessedNumber)
                 {
                     Console.WriteLine("Congrats! You guessed the number!");
                     break;
                 }
-                else if(lastGuess < guessedNumber)
+                else if (lastGuess < guessedNumber)
                 {
                     Console.WriteLine("My number is greater!");
                 }
@@ -64,7 +64,7 @@ namespace GuessNumberGame
                 }
                 tries++;
 
-                if(tries == maxTries)
+                if (tries == maxTries)
                 {
                     Console.WriteLine("You lost!");
                 }
@@ -74,7 +74,54 @@ namespace GuessNumberGame
 
         private void MachineGuesses()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Enter a number that`s to be guessed by a computer.");
+
+            int guessedNumber = 1;
+            while (guessedNumber == -1)
+            {
+                int parsedNumber = int.Parse(Console.ReadLine());
+                if (parsedNumber > 0 && parsedNumber <= this.max)
+                {
+                    guessedNumber = parsedNumber;
+                }
+            }
+
+            int lastGuess = -1;
+            int min = 0;
+            int max = this.max;
+            int tries = 0;
+
+            while (lastGuess != guessedNumber && tries < maxTries)
+            {
+                lastGuess = (max + min) / 2;
+                Console.WriteLine($"Did you guess this number = {lastGuess}?");
+                Console.WriteLine("If yes, enter 'y', if you number is greater - enter 'g', if less - 'l'");
+
+                string answer = Console.ReadLine();
+                if(answer == "y")
+                {
+                    Console.WriteLine("Super! I guessed you number, man!");
+                    break;                  
+                }
+                else if(answer == "g")
+                {
+                    min = lastGuess;
+                }
+                else
+                {
+                    max = lastGuess;
+                }
+
+                if(lastGuess == guessedNumber)
+                {
+                    Console.WriteLine("Don`t cheat, man!");
+                }
+                tries++;
+                if(tries == maxTries)
+                {
+                    Console.WriteLine("No tries wnymore :( I lost!");
+                }
+            }
         }
     }
 }
